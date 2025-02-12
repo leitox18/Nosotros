@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Serías mi San Valentín?</title>
+    <link rel="stylesheet" href="styles.css">
+    <audio id="musica" autoplay>
+        <source src="music.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const audio = document.getElementById("musica");
+            setTimeout(() => audio.pause(), audio.duration / 2 * 1000);
+        });
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            background-image: url('fondo.png');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+        }
+        .mensaje {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+        }
+        .animacion {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .conejito {
+            width: 500px;
+            height: auto;
+        }
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            align-items: center;
+        }
+        .boton {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #aceptar {
+            background-color: green;
+        }
+        #rechazar {
+            background-color: red;
+            position: absolute;
+        }
+        .corazones span {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            clip-path: circle();
+            animation: flotar 3s infinite;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .imagenes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .foto {
+            width: 200px;
+            border-radius: 10px;
+        }
+        @keyframes caer {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="inicio">
+        <h1 class="mensaje">Hola Preciosa, siempre dichoso de estar en tu vida y que tú estés en la mía, y ya que la fecha lo amerita ¿SERÍAS MI SAN VALENTÍN?</h1>
+        <div class="animacion">
+            <img src="capitan_snow.gif" alt="Capitán Snow" class="conejito">
+            <div class="botones">
+                <button class="boton" id="aceptar">¡Sí, acepto! 💖</button>
+                <button class="boton" id="rechazar">No acepto 💔</button>
+            </div>
+        </div>
+        <div class="corazones">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <div class="container" id="confirmacion" style="display: none;">
+        <h2 style="font-size: 36px; position: relative; top: -20px; color: white;">Sabía que aceptarías, mi amor 🙈 (no hubo persuación de por medio oc?)
+</h2>
+        <h2>JAJAJAJJAJAJAJA TE AMOOOOOO</h2>
+        <div class="imagenes">
+            <img src="14.jpg" alt="Foto 1" class="foto">
+            <img src="foto2.jpg" alt="Foto 2" class="foto">
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("aceptar").addEventListener("click", function() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("confirmacion").style.display = "block";
+            lanzarConfeti();
+        });
+        
+        document.getElementById("rechazar").addEventListener("mouseover", function() {
+            this.style.top = Math.random() * window.innerHeight + "px";
+            this.style.left = Math.random() * window.innerWidth + "px";
+        });
+
+        function lanzarConfeti() {
+            for (let i = 0; i < 50; i++) {
+                let confeti = document.createElement("div");
+                confeti.innerHTML = "😍";
+                confeti.style.position = "absolute";
+                confeti.style.left = Math.random() * window.innerWidth + "px";
+                confeti.style.top = "0px";
+                confeti.style.fontSize = "30px";
+                confeti.style.animation = "caer 3s linear infinite";
+                document.body.appendChild(confeti);
+
+                setTimeout(() => confeti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
